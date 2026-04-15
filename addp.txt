@@ -1,3 +1,26 @@
 a=int(input("enter a"))
 b=int(imput("enter b"))
 print(a+b)
+<!DOCTYPE html>
+<html>
+<head>
+	<tilte>"hello,world"</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This webpage is running inside a Docker container.</p>
+</body>
+</html>
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+docker build -t hello-docker .
+docker run -d -p 8080:80 hello-docker
+Open your browser and go to:
+http://localhost:8080
+
+docker pull mysql:latest
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root123 -d -p 3306:3306 mysql:latest
+docker rm -f mysql-container
+MYSQL_ROOT_PASSWORD=root123 -d -p 3307:3306 mysql:latestdocker exec -it mysql-container mysql -u root –p
+Enter PWD: root123
+docker run --name phpmyadmin-container --network my-network -d -e PMA_HOST=mysql-container -e MYSQL_ROOT_PASSWORD=root123 -p 8080:80 phpmyadmin/phpmyadmin
